@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  
+  mongodb:
+    image: mongo
+    restart: always
+    ports:
+      - "27017"
+      
+  backend:
+    image: joemat/wirvsvirus-covid-report-backend
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+    environment:
+      - QUARKUS_HTTP_PORT=8080
+      - QUARKUS_HTTP_CORS_ORIGINS=
+      - QUARKUS_MONGODB_CONNECTION_STRING=mongodb://mongodb:27017
+      - SENDGRIP_APIKEY=unset
+      - SMS4_PASSWORD=unset
+      
+  frontend:
+    image: joemat/wirvsvirus-covid-report-frontend
+    restart: always
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+      
