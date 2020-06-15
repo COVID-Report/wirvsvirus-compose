@@ -19,7 +19,7 @@ services:
       - QUARKUS_HTTP_PORT=8080
       - QUARKUS_HTTP_CORS_ORIGINS=
       - QUARKUS_MONGODB_CONNECTION_STRING=mongodb://mongodb:27017
-      - SENDGRIP_APIKEY=unset
+      - SENDGRID_APIKEY=unset
       - SMS4_PASSWORD=unset
       
   frontend:
